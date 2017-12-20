@@ -3,7 +3,6 @@ var rightAnswer;
 var wrongAnswer;
 var noAnswer;
 
-
 var trivia = [{
     question: "Fry gets cryogenically frozen. What year does he thawed?",
     possibleAnswers: ["2500","3000","3500","4000"],
@@ -65,23 +64,85 @@ var trivia = [{
     explanation: "Matt Groening was the creative drive behind 'The Simpsons' for over a decade before he came up with the show."
 }];
 
-var afterGuess = {
-    correctGuess: "Correct. Bet you feel good about yourself.",
-    incorrectGuess: "Hahahahaha. Oh wait you’re serious. Let me laugh even harder.",
-    ranOutOfTime: "You know what cheers me up? Other people's misfortune.",
-    endOfGame:"The game’s over. I have all the money. Compare your lives to mine and then kill yourselves!",
+var afterGuessMessage = {
+    correctGuessMessage: "Correct. Bet you feel good about yourself.",
+    incorrectGuessMessage: "Hahahahaha. Oh wait you’re serious. Let me laugh even harder.",
+    ranOutOfTimeMessage: "You know what cheers me up? Other people's misfortune.",
+    endOfGameMessage:"The game’s over. I have all the money. Compare your lives to mine and then kill yourselves!",
 }
 
+$(".start-button").on("click", function(){
+    $(this).hide();
+    newGame();
+});
+
+$(".replay-button").on("click", function(){
+    $(this).hide();
+    newGame();
+});
+
+function afterGuessPage(){
+    //clears question
+    $(".question-div").empty();
+    //clears answers
+    for(var i = 0; i < 4; i++){
+        $(".multiple-answer" + i).empty();
+        $(".multiple-answer" + i).addClass("hidden");
+    }
+    //should show you the right answer but it won't accept the [answer]
+    // trivia[questionNumber].possibleAnswers[answer] = parseInt(trivia[questionNumber].possibleAnswers[answer]);
+   // $(".correct-answer").text(trivia[questionNumber].possibleAnswers[answer]);
+    $(".explanation-div").text(trivia[questionNumber].explanation);
+
+    questionNumber++;
+    console.log(questionNumber);
+    //if the multiple-answer(number) == answer, correct or else wrong
+    
+    if(questionNumber <= 9){
+        setTimeout(giveQuestion, 3000);
+    }
+    else{
+        setTimeout(endGame,3000);
+    }
+ 
+}
+
+var questionNumber = 0;
+var userPick;
+//post question, run timer, show answer and afterGuessMessage
 function giveQuestion(){
+    //get rid of previous answer page
+    $(".explanation-div").empty();
 
+    //post question
+    $(".question-div").html(trivia[questionNumber].question);
+    console.log(trivia[questionNumber].question);
+    //post answers
+    for(var i = 0; i < 4; i++){
+        $(".multiple-answer"+i).text(trivia[questionNumber].possibleAnswers[i]);
+        console.log(trivia[questionNumber].possibleAnswers[i]);
+        $(".multiple-answer" + i).removeClass("hidden");
+        $(".multiple-answer" + i).addClass("choice");
+    }
 
+    $(".choice").on("click", function(){
+        userPick = $(this).data("index");
+        console.log(userPick);
+    });
+    //load answer page if clock runs out - 15 seconds
+   setTimeout(afterGuessPage ,3000)
+   
 }
 
+//this should start a new game
 function newGame (){
-
     rightAnswer = 0;
     wrongAnswer = 0;
     noAnswer = 0;
-
     giveQuestion();
+}
+
+
+function endGame(){
+    //show scoreboard and offer to replay
 }
