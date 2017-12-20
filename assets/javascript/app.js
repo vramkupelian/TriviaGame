@@ -1,3 +1,4 @@
+
 var rightAnswer;
 var wrongAnswer;
 var noAnswer;
@@ -47,7 +48,7 @@ var trivia = [{
 },
 {
     question: "Which of these inventions was not made by the Professor?",
-    possibleAnswers: ["The Mind-Switcher", "The What-If Machine",  "The eyePhone","The Smell-O-Scope"],
+    possibleAnswers: ["The Mind-Switcher", "The What-If Machine", "The eyePhone","The Smell-O-Scope"],
     answer: 2,
     explanation: "Though the Professor has made plenty of inventions, the eyePhone is a MomCorp product."
 },
@@ -64,4 +65,23 @@ var trivia = [{
     explanation: "Matt Groening was the creative drive behind 'The Simpsons' for over a decade before he came up with the show."
 }];
 
+var afterGuess = {
+    correctGuess: "Correct. Bet you feel good about yourself.",
+    incorrectGuess: "Hahahahaha. Oh wait you’re serious. Let me laugh even harder.",
+    ranOutOfTime: "You know what cheers me up? Other people's misfortune.",
+    endOfGame:"The game’s over. I have all the money. Compare your lives to mine and then kill yourselves!",
+}
 
+function giveQuestion(){
+
+
+}
+
+function newGame (){
+
+    rightAnswer = 0;
+    wrongAnswer = 0;
+    noAnswer = 0;
+
+    giveQuestion();
+}
