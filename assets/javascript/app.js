@@ -84,35 +84,54 @@ $(".replay-button").on("click", function(){
 function afterGuessPage(){
     //clears question
     $(".question-div").empty();
+    
     //clears answers
     for(var i = 0; i < 4; i++){
         $(".multiple-answer" + i).empty();
         $(".multiple-answer" + i).addClass("hidden");
     }
-    //should show you the right answer but it won't accept the [answer]
-    // trivia[questionNumber].possibleAnswers[answer] = parseInt(trivia[questionNumber].possibleAnswers[answer]);
-   // $(".correct-answer").text(trivia[questionNumber].possibleAnswers[answer]);
+
+    //should show you explanation 
     $(".explanation-div").text(trivia[questionNumber].explanation);
 
-    questionNumber++;
-    console.log(questionNumber);
-    //if the multiple-answer(number) == answer, correct or else wrong
+    console.log("question number:" + questionNumber);
     
-    if(questionNumber <= 9){
-        setTimeout(giveQuestion, 3000);
+    //is answer correct?
+    if(userPick===trivia[questionNumber].answer){
+        console.log("correct answer");
+        $(".after-guess-message").text(afterGuessMessage.correctGuessMessage);
+        rightAnswer++;
+    }
+    else if(userPick !== trivia[questionNumber].answer){
+        console.log("wrong answer");
+        $(".after-guess-message").text(afterGuessMessage.incorrectGuessMessage);
+        wrongAnswer++;
     }
     else{
-        setTimeout(endGame,3000);
+        console.log("no answer");
+        $(".after-guess-message").text(afterGuessMessage.ranOutOfTimeMessage);
+        noAnswer++;
+    }
+
+    //show next page, unless last question, then show end page
+    if(questionNumber <= 9){
+        setTimeout(giveQuestion, 5000);
+    }
+    else{
+        setTimeout(endGame,5000);
     }
  
+    questionNumber++;
 }
 
 var questionNumber = 0;
 var userPick;
+
 //post question, run timer, show answer and afterGuessMessage
 function giveQuestion(){
     //get rid of previous answer page
     $(".explanation-div").empty();
+    $(".after-guess-message").empty();
 
     //post question
     $(".question-div").html(trivia[questionNumber].question);
@@ -123,14 +142,24 @@ function giveQuestion(){
         console.log(trivia[questionNumber].possibleAnswers[i]);
         $(".multiple-answer" + i).removeClass("hidden");
         $(".multiple-answer" + i).addClass("choice");
+        $(".multiple-answer"+ i).attr({"data-index-number": i});
     }
 
-    $(".choice").on("click", function(){
-        userPick = $(this).data("index");
-        console.log(userPick);
-    });
     //load answer page if clock runs out - 15 seconds
-   setTimeout(afterGuessPage ,3000)
+    var runningClock = setTimeout(afterGuessPage ,5000)
+    console.log("running clock: " + runningClock);
+    
+    //clicking a button
+    $(".choice").on("click", function(){
+        //assign index number 
+        userPick = $(this).attr("data-index-number");
+        userPick = parseInt(userPick);
+        console.log("user pick:" + userPick);
+        clearTimeout(runningClock);
+        afterGuessPage();
+    });
+
+    
    
 }
 
@@ -144,5 +173,11 @@ function newGame (){
 
 
 function endGame(){
-    //show scoreboard and offer to replay
+    //clear answer page
+    $(".explanation-div").empty();
+    $(".after-guess-message").empty();
+    
+    //show replay button
+    $("replay-button").removeClass("hidden");
+
 }
