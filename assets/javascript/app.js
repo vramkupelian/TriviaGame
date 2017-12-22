@@ -143,7 +143,7 @@ function giveQuestion(){
     $(".after-guess-message").empty();
     $(".clock").empty();
     clearInterval(timer);
-
+seconds =5;
     //post question
     $(".question-div").html(trivia[questionNumber].question);
     console.log(trivia[questionNumber].question);
@@ -158,7 +158,7 @@ function giveQuestion(){
     }
 
     //load answer page if clock runs out 
-    runningClock = setTimeout(afterGuessPage, 5000);
+    // runningClock = setTimeout(afterGuessPage, 5000);
     
     //to show the countdown
     timer = setInterval(showClockRunning, 1000);
@@ -170,12 +170,14 @@ function giveQuestion(){
         // userPick = $(this).data(i)
         userPick = parseInt(userPick);
         console.log("user pick:" + userPick);
-        clearTimeout(runningClock);
+        // clearTimeout(runningClock);
         clearInterval(timer);
         afterGuessPage();
     });
    
 }
+
+//try turning off the lcick at end of function, on at the beginning of function to come.
 
 var seconds = 5;
 var timer;
@@ -187,6 +189,7 @@ function showClockRunning(){
      if(seconds ===0){
          clearInterval(timer);
          afterGuessPage();
+         seconds=5;
      }
 }
 
