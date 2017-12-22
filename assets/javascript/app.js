@@ -164,18 +164,29 @@ seconds =5;
     timer = setInterval(showClockRunning, 1000);
 
     //clicking a button
-    $(".choice").on("click", function(){
-        //assign index number 
-        userPick = $(this).attr("data-index-number");
-        // userPick = $(this).data(i)
-        userPick = parseInt(userPick);
-        console.log("user pick:" + userPick);
-        // clearTimeout(runningClock);
-        clearInterval(timer);
-        afterGuessPage();
-    });
+    // $(".choice").on("click", function(){
+    //     //assign index number 
+    //     userPick = $(this).attr("data-index-number");
+    //     // userPick = $(this).data(i)
+    //     userPick = parseInt(userPick);
+    //     console.log("user pick:" + userPick);
+    //     // clearTimeout(runningClock);
+    //     clearInterval(timer);
+    //     afterGuessPage();
+    // });
    
 }
+
+$(document).on("click",".choice",function(){
+    //assign index number 
+    userPick = $(this).attr("data-index-number");
+    // userPick = $(this).data(i)
+    userPick = parseInt(userPick);
+    console.log("user pick:" + userPick);
+    // clearTimeout(runningClock);
+    clearInterval(timer);
+    afterGuessPage();
+});
 
 //try turning off the lcick at end of function, on at the beginning of function to come.
 
