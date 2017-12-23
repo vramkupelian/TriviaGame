@@ -134,14 +134,12 @@ function afterGuessPage(){
     $(userPick).removeAttr("data-index-number");
     questionNumber++;
 
-    //setTimeout(runningClock,1000);
-
     //show next page, unless last question, then show end page
     if(questionNumber < (trivia.length) ){
-        setTimeout(giveQuestion, 1000);
+        setTimeout(giveQuestion, 5000);
     }
     else{
-        setTimeout(endGame,1000);
+        setTimeout(endGame,5000);
     }
 }
 
@@ -203,7 +201,10 @@ function showClockRunning(){
 function newGame (){
     $(".number-correct-guess").empty();
     $(".number-incorrect-guess").empty();
-
+    $(".number-incorrect-guess").addClass("hidden");
+    $(".number-correct-guess").addClass("hidden");
+    $(".game-over-div").addClass("hidden");
+    
     rightAnswer = 0;
     wrongAnswer = 0;
     noAnswer = 0;
@@ -224,6 +225,7 @@ function endGame(){
     $(".number-correct-guess").removeClass("hidden");
     $(".number-incorrect-guess").html("Incorrect: " + wrongAnswer);
     $(".number-incorrect-guess").removeClass("hidden");
+    $(".game-over-div").removeClass("hidden");
 
     //show replay button
     $(".replay-button").removeClass("hidden");
