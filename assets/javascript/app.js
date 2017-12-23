@@ -138,10 +138,10 @@ function afterGuessPage(){
 
     //show next page, unless last question, then show end page
     if(questionNumber < (trivia.length) ){
-        setTimeout(giveQuestion, 5000);
+        setTimeout(giveQuestion, 1000);
     }
     else{
-        setTimeout(endGame,5000);
+        setTimeout(endGame,1000);
     }
 }
 
@@ -170,33 +170,16 @@ function giveQuestion(){
         $(".multiple-answer" + i).addClass("choice");
         $(".multiple-answer"+ i).attr("data-index-number", i);
     }
-
-    //load answer page if clock runs out 
-    // runningClock = setTimeout(afterGuessPage, 5000);
     
     //to show the countdown
     timer = setInterval(showClockRunning, 1000);
 
-    //clicking a button
-    // $(".choice").on("click", function(){
-    //     //assign index number 
-    //     userPick = $(this).attr("data-index-number");
-    //     // userPick = $(this).data(i)
-    //     userPick = parseInt(userPick);
-    //     console.log("user pick:" + userPick);
-    //     // clearTimeout(runningClock);
-    //     clearInterval(timer);
-    //     afterGuessPage();
-    // });
-   
 }
 
 $(document).on("click",".choice",function(){
     //assign index number 
     userPick = $(this).attr("data-index-number");
-    // userPick = $(this).data(i)
     userPick = parseInt(userPick);
-    // clearTimeout(runningClock);
     clearInterval(timer);
     afterGuessPage();
 });
@@ -235,9 +218,12 @@ function endGame(){
     $(".clock").empty();
     $(".after-image").empty();
     
+    $(".clock").addClass("hidden");
     $(".game-over-div").text(afterGuessMessage.endOfGameMessage);
     $(".number-correct-guess").html("Correct: " + rightAnswer);
+    $(".number-correct-guess").removeClass("hidden");
     $(".number-incorrect-guess").html("Incorrect: " + wrongAnswer);
+    $(".number-incorrect-guess").removeClass("hidden");
 
     //show replay button
     $(".replay-button").removeClass("hidden");
