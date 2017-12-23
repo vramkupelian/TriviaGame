@@ -6,22 +6,43 @@
     </title>
 
     <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+        body{
+            background-image: url(./assets/images/intro.jpg);
+            background-repeat: repeat;
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .giant{
+            background-image: url(./assets/images/bender.jpg);
+            background-repeat: repeat;
+            background-position: center;
+            background-size: 100%;
+        }
+
+    </style>
 </head>
 <body>
 
+
     <div class = "giant">
-        <button class = "start-button">Start the Game</button>
+        <div class = "start-holder">
+            <button class = "start-button">Start the Game</button>
+        </div>
         <!-- ======================================== Questions ======================================== -->
         <!-- how much time is left -->
-        <div class = "clock"></div>
+        <div class = "clock hidden"></div>
         <!-- post question here -->
         <div class = "question-div"></div>
         <div class = "image-div"></div>
         <!-- possible answers here -->
-        <button class = "multiple-answer0 hidden"></button>
-        <button class = "multiple-answer1 hidden"></button>
-        <button class = "multiple-answer2 hidden"></button>
-        <button class = "multiple-answer3 hidden"></button>
+        <div class = "button-holder">
+            <button class = "multiple-answer0 hidden"></button>
+            <button class = "multiple-answer1 hidden"></button>
+            <button class = "multiple-answer2 hidden"></button>
+            <button class = "multiple-answer3 hidden"></button>
+        </div>
 
         <!--     ====================================== answers ================================================= -->
         <!-- the message if you got it right/wrong. -->
@@ -30,12 +51,12 @@
         <div class = "explanation-div"></div>
 
         <!-- ===================================== game finished page ========================================= -->
-        <div class = "scoreboard-div"></div>
+        <div class = "game-over-div"></div>
             <div class = "number-correct-guess"></div>
             <div class = "number-incorrect-guess"></div>
+            <button class = "replay-button hidden">I want to play again</button>
         </div>
         <div class = "number-unaswered"></div>
-        <button class = "replay-button hidden">I want to play again</button>
     </div>
     
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    

@@ -86,9 +86,9 @@ var trivia = [{
 
 var afterGuessMessage = {
     correctGuessMessage: "Correct. Bet you feel good about yourself.",
-    incorrectGuessMessage: "Hahahahaha. Oh wait you’re serious. Let me laugh even harder.",
+    incorrectGuessMessage: "Hahahahaha. Oh wait you are serious. Let me laugh even harder.",
     ranOutOfTimeMessage: "You know what cheers me up? Other people's misfortune.",
-    endOfGameMessage:"The game’s over. I have all the money. Compare your lives to mine and then kill yourselves!",
+    endOfGameMessage:"The game is over. I have all the money. Compare your lives to mine and then kill yourselves!",
 }
 
 $(".start-button").on("click", function(){
@@ -109,7 +109,7 @@ function afterGuessPage(){
         $(".multiple-answer" + i).empty();
         $(".multiple-answer" + i).addClass("hidden");
     }
-    $(".choice").empty();
+    // $(".choice").empty();
     clearInterval(timer);
 
     // show you explanation 
@@ -138,10 +138,10 @@ function afterGuessPage(){
 
     //show next page, unless last question, then show end page
     if(questionNumber < (trivia.length) ){
-        setTimeout(giveQuestion, 2000);
+        setTimeout(giveQuestion, 5000);
     }
     else{
-        setTimeout(endGame,2000);
+        setTimeout(endGame,5000);
     }
 }
 
@@ -150,12 +150,12 @@ var userPick;
 
 //post question, run timer, show answer and afterGuessMessage
 function giveQuestion(){
-
+    $(".clock").removeClass("hidden");
     
     //get rid of previous answer page
     $(".explanation-div").empty();
     $(".after-guess-message").empty();
-    $(".clock").empty();
+    // $(".clock").empty();
     $(".after-image").empty();
     clearInterval(timer);
     seconds =25;
@@ -220,7 +220,7 @@ function showClockRunning(){
 function newGame (){
     $(".number-correct-guess").empty();
     $(".number-incorrect-guess").empty();
-    
+
     rightAnswer = 0;
     wrongAnswer = 0;
     noAnswer = 0;
@@ -235,11 +235,14 @@ function endGame(){
     $(".clock").empty();
     $(".after-image").empty();
     
+    $(".game-over-div").text(afterGuessMessage.endOfGameMessage);
     $(".number-correct-guess").html("Correct: " + rightAnswer);
     $(".number-incorrect-guess").html("Incorrect: " + wrongAnswer);
 
     //show replay button
     $(".replay-button").removeClass("hidden");
     console.log("Reached end");
+    questionNumber = 0;
+
 
 }
