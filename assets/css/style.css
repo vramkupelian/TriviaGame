@@ -11,7 +11,7 @@
 }
 
 .giant{
-    border: 3px double white;
+    border: 3px double rgb(111, 162, 181);
     width: fit-content; 
     margin: auto;   
     height: 600px;
