@@ -11,12 +11,12 @@
 }
 
 .giant{
-    border: 3px double rgb(111, 162, 181);
-    width: fit-content; 
+    border: 1px solid rgb(194, 194, 194);
+    /* width: fit-content;  */
     margin: auto;   
     height: 600px;
-    width: 660px;
-    margin-top: 130px;
+    width: 658px;
+    margin-top: 55px;
 }
 
 button{
